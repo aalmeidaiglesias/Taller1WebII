@@ -1,0 +1,550 @@
+.contacto {
+  min-height: calc(100vh - 140px);
+
+  padding: 70px 8%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  align-items: center;
+
+  gap: 70px;
+
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(124, 58, 237, 0.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(59, 130, 246, 0.12),
+      transparent 30%
+    ),
+    #080b16;
+}
+
+.contacto::before {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  top: -180px;
+  right: -120px;
+
+  border-radius: 50%;
+
+  background: rgba(124, 58, 237, 0.14);
+
+  filter: blur(100px);
+
+  pointer-events: none;
+}
+
+.contacto::after {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  bottom: -150px;
+  left: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(37, 99, 235, 0.12);
+
+  filter: blur(100px);
+
+  pointer-events: none;
+}
+
+
+.contacto-info {
+  position: relative;
+
+  z-index: 1;
+
+  max-width: 600px;
+}
+
+.etiqueta {
+  display: inline-block;
+
+  margin-bottom: 18px;
+
+  padding: 8px 18px;
+
+  border:
+    1px solid rgba(139, 92, 246, 0.35);
+
+  border-radius: 30px;
+
+  background:
+    rgba(124, 58, 237, 0.08);
+
+  color: #a78bfa;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.contacto-info h1 {
+  margin: 0 0 25px;
+
+  color: #ffffff;
+
+  font-size: clamp(40px, 5vw, 58px);
+
+  line-height: 1.1;
+
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+}
+
+.contacto-info h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      #8b5cf6,
+      #3b82f6
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+.descripcion {
+  margin-bottom: 35px;
+
+  color: #a1a1aa;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+}
+
+
+.beneficios {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.beneficio {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.05);
+
+  border-radius: 15px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  transition: 0.3s;
+}
+
+.beneficio:hover {
+  transform: translateX(6px);
+
+  border-color:
+    rgba(139, 92, 246, 0.25);
+
+  background:
+    rgba(124, 58, 237, 0.05);
+}
+
+.beneficio-icono {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  border:
+    1px solid rgba(139, 92, 246, 0.2);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.25),
+      rgba(37, 99, 235, 0.18)
+    );
+
+  color: #a78bfa;
+
+  font-size: 25px;
+
+  box-shadow:
+    0 8px 25px rgba(124, 58, 237, 0.1);
+
+  transition: 0.3s;
+}
+
+.beneficio:hover .beneficio-icono {
+  transform: scale(1.08);
+
+  box-shadow:
+    0 10px 30px rgba(124, 58, 237, 0.2);
+}
+
+.beneficio h3 {
+  margin: 0 0 4px;
+
+  color: #ffffff;
+
+  font-size: 16px;
+}
+
+.beneficio p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 14px;
+}
+
+.formulario-container {
+  position: relative;
+
+  z-index: 1;
+
+  padding: 38px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.3);
+
+  transition: 0.3s;
+}
+
+.formulario-container:hover {
+  border-color:
+    rgba(139, 92, 246, 0.25);
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(124, 58, 237, 0.05);
+}
+
+.formulario-header {
+  margin-bottom: 25px;
+}
+
+.formulario-header h2 {
+  margin: 0 0 8px;
+
+  color: #ffffff;
+
+  font-size: 28px;
+
+  font-weight: 800;
+}
+
+.formulario-header p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  line-height: 1.6;
+}
+
+.campo {
+  margin-bottom: 22px;
+}
+
+.campo label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #cbd5e1;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.campo input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 15px;
+
+  border:
+    1px solid #334155;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #0f172a;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  transition: 0.3s;
+}
+
+.campo input::placeholder {
+  color: #64748b;
+}
+
+.campo input:focus {
+  border-color: #8b5cf6;
+
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.12);
+
+  background: #111827;
+}
+====================================== */
+
+small {
+  display: block;
+
+  margin-top: 7px;
+
+  color: #f87171;
+
+  font-size: 12px;
+}
+
+
+.terminos {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin: 20px 0 8px;
+}
+
+.terminos input {
+  width: 16px;
+  height: 16px;
+
+  accent-color: #8b5cf6;
+
+  cursor: pointer;
+}
+
+.terminos label {
+  color: #94a3b8;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+button {
+  width: 100%;
+
+  margin-top: 18px;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8b5cf6,
+      #3b82f6
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+button:hover {
+  background:
+    linear-gradient(
+      90deg,
+      #7c3aed,
+      #2563eb
+    );
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(124, 58, 237, 0.25);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.mensaje-exito {
+  margin-top: 20px;
+
+  padding: 13px;
+
+  border:
+    1px solid rgba(34, 197, 94, 0.25);
+
+  border-radius: 10px;
+
+  background:
+    rgba(34, 197, 94, 0.08);
+
+  color: #86efac;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+
+.contacto-info {
+  animation:
+    aparecerIzquierda 0.8s ease forwards;
+}
+
+.formulario-container {
+  animation:
+    aparecerDerecha 0.8s ease forwards;
+}
+
+@keyframes aparecerIzquierda {
+
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes aparecerDerecha {
+
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+
+@media (max-width: 850px) {
+
+  .contacto {
+    grid-template-columns: 1fr;
+
+    padding: 60px 6%;
+
+    gap: 45px;
+  }
+
+  .contacto-info {
+    max-width: 700px;
+
+    margin: auto;
+
+    text-align: center;
+  }
+
+  .beneficios {
+    text-align: left;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .contacto {
+    padding: 50px 20px;
+  }
+
+  .contacto-info h1 {
+    font-size: 38px;
+  }
+
+  .descripcion {
+    font-size: 15px;
+  }
+
+  .formulario-container {
+    padding: 25px;
+
+    border-radius: 18px;
+  }
+
+  .formulario-header h2 {
+    font-size: 24px;
+  }
+
+  .beneficio {
+    padding: 12px;
+  }
+
+}

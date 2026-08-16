@@ -1,0 +1,332 @@
+<section class="catalogo">
+
+  <div class="catalogo-header">
+
+    <p class="etiqueta">
+      UNIVERSO HÉROE
+    </p>
+
+    <h1>
+      Explora el universo de los
+      <span>Superhéroes</span>
+    </h1>
+
+    <p class="descripcion">
+      Busca personajes, consulta sus habilidades y
+      descubre información de tus superhéroes favoritos.
+    </p>
+
+  </div>
+
+  @if (cargando) {
+
+  <div class="cargando">
+
+    <div class="spinner"></div>
+
+    <h2>
+      Preparando el catálogo
+    </h2>
+
+    <p>
+      Estamos cargando los superhéroes y sus imágenes espere porfavor.......
+    </p>
+
+  </div>
+
+  }
+
+  @else if (error) {
+
+  <div class="error">
+
+    <h2>
+      No se pudieron cargar los superhéroes
+    </h2>
+
+    <p>
+      Ocurrió un problema al conectarse con la API.
+    </p>
+
+    <button onclick="location.reload()">
+      Intentar nuevamente
+    </button>
+
+  </div>
+
+  }
+
+  @else {
+
+
+  <div class="filtros">
+
+    <div class="buscador">
+
+      <span>
+        🔎
+      </span>
+
+      <input type="text" [(ngModel)]="busqueda" (input)="filtrarSuperheroes()" placeholder="Buscar superhéroe...">
+
+    </div>
+
+
+    <div class="select-container">
+
+      <select [(ngModel)]="editorialSeleccionada" (change)="filtrarSuperheroes()">
+
+        <option value="Todas">
+          Todas las editoriales
+        </option>
+
+        @for (
+        editorial of obtenerEditores();
+        track editorial
+        ) {
+
+        <option [value]="editorial">
+          {{ editorial }}
+        </option>
+
+        }
+
+      </select>
+
+    </div>
+
+
+    <button class="btn-limpiar" (click)="limpiarFiltros()">
+
+      Limpiar
+
+    </button>
+
+  </div>
+
+  <div class="resultado-info">
+
+    <p>
+
+      Mostrando
+
+      <strong>
+        {{ superheroesFiltrados.length }}
+      </strong>
+
+      superhéroes
+
+    </p>
+
+  </div>
+
+  @if (superheroesFiltrados.length > 0) {
+
+  <div class="grid">
+
+    @for (
+    heroe of superheroesFiltrados;
+    track heroe.id
+    ) {
+
+    <article class="card">
+
+      <div class="imagen-container">
+
+        <img [src]="heroe.images.lg" [alt]="heroe.name">
+
+        <span class="publisher">
+
+          {{
+          heroe.biography?.publisher ||
+          'Desconocido'
+          }}
+
+        </span>
+
+      </div>
+
+      <div class="card-content">
+
+        <h2>
+          {{ heroe.name }}
+        </h2>
+
+
+        <p class="nombre-completo">
+
+          {{
+          heroe.biography?.fullName ||
+          'Nombre no disponible'
+          }}
+
+        </p>
+        <div class="datos">
+          <div class="dato">
+            <span>
+              Raza
+            </span>
+            <strong>
+              {{
+              heroe.appearance?.race ||
+              'Desconocida'
+              }}
+            </strong>
+          </div>
+
+
+          <div class="dato">
+            <span>
+              Ocupación
+            </span>
+            <strong>
+              {{
+              heroe.work?.occupation ||
+              'No disponible'
+              }}
+            </strong>
+
+          </div>
+
+
+          <div class="dato">
+
+            <span>
+              Primera aparición
+            </span>
+
+            <strong>
+              {{
+              heroe.biography?.firstAppearance ||
+              'No disponible'
+              }}
+            </strong>
+
+          </div>
+
+        </div>
+
+        <div class="estadisticas">
+          <h3>
+            Estadísticas
+          </h3>
+
+          <div class="estadisticas-grid">
+
+            <div class="estadistica">
+
+              <span>
+                INT
+              </span>
+
+              <strong>
+                {{
+                heroe.powerstats?.intelligence || 0
+                }}
+              </strong>
+
+              <small>
+                Inteligencia
+              </small>
+
+            </div>
+
+            <div class="estadistica">
+
+              <span>
+                STR
+              </span>
+
+              <strong>
+                {{
+                heroe.powerstats?.strength || 0
+                }}
+              </strong>
+
+              <small>
+                Fuerza
+              </small>
+
+            </div>
+
+            <div class="estadistica">
+
+              <span>
+                SPD
+              </span>
+
+              <strong>
+                {{
+                heroe.powerstats?.speed || 0
+                }}
+              </strong>
+
+              <small>
+                Velocidad
+              </small>
+
+            </div>
+
+            <div class="estadistica">
+
+              <span>
+                PWR
+              </span>
+
+              <strong>
+                {{
+                heroe.powerstats?.power || 0
+                }}
+              </strong>
+
+              <small>
+                Poder
+              </small>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
+    }
+
+  </div>
+
+  }
+
+  @else {
+
+  <div class="sin-resultados">
+
+    <div>
+      🔎
+    </div>
+
+    <h2>
+      No encontramos superhéroes
+    </h2>
+
+    <p>
+      Intenta buscar con otro nombre o cambia
+      el filtro de editorial.
+    </p>
+
+    <button class="btn-limpiar" (click)="limpiarFiltros()">
+
+      Ver todos
+
+    </button>
+
+  </div>
+
+  }
+
+  }
+
+</section>

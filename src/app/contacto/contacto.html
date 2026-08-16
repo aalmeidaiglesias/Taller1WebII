@@ -1,0 +1,207 @@
+<section class="contacto">
+
+  <div class="contacto-info">
+
+    <p class="etiqueta">
+      CONTACTO
+    </p>
+
+    <h1>
+      Forma parte de
+      <span>Universo Héroe</span>
+    </h1>
+
+    <p class="descripcion">
+      Suscríbete para recibir novedades y mantenerte
+      informado sobre nuevos personajes y contenido
+      relacionado con el mundo de los superhéroes.
+    </p>
+
+
+    <div class="beneficios">
+
+      <div class="beneficio">
+
+        <div class="beneficio-icono">
+          🦸
+        </div>
+
+        <div>
+          <h3>
+            Nuevos personajes
+          </h3>
+
+          <p>
+            Descubre nuevos superhéroes del catálogo.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="beneficio">
+
+        <div class="beneficio-icono">
+          ⚡
+        </div>
+
+        <div>
+          <h3>
+            Información
+          </h3>
+
+          <p>
+            Conoce habilidades y características.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="beneficio">
+
+        <div class="beneficio-icono">
+          🔔
+        </div>
+
+        <div>
+          <h3>
+            Novedades
+          </h3>
+
+          <p>
+            Mantente informado de las actualizaciones.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="formulario-container">
+
+    <div class="formulario-header">
+
+      <h2>
+        Suscríbete
+      </h2>
+
+      <p>
+        Completa el formulario para registrarte.
+      </p>
+
+    </div>
+
+
+    <form
+      [formGroup]="formulario"
+      (ngSubmit)="suscribirse()">
+
+      <div class="campo">
+
+        <label for="nombre">
+          Nombre completo
+        </label>
+
+        <input
+          id="nombre"
+          type="text"
+          formControlName="nombre"
+          placeholder="Ingresa tu nombre"
+        >
+
+
+        @if (
+          formulario.get('nombre')?.invalid &&
+          formulario.get('nombre')?.touched
+        ) {
+
+          <small>
+            El nombre es obligatorio y debe tener
+            al menos 3 caracteres.
+          </small>
+
+        }
+
+      </div>
+
+      <div class="campo">
+
+        <label for="correo">
+          Correo electrónico
+        </label>
+
+        <input
+          id="correo"
+          type="email"
+          formControlName="correo"
+          placeholder="ejemplo@gmail.com"
+        >
+
+
+        @if (
+          formulario.get('correo')?.invalid &&
+          formulario.get('correo')?.touched
+        ) {
+
+          <small>
+            Ingresa un correo electrónico válido.
+          </small>
+
+        }
+
+      </div>
+
+
+      <!-- TÉRMINOS -->
+
+      <div class="terminos">
+
+        <input
+          id="terminos"
+          type="checkbox"
+          formControlName="terminos"
+        >
+
+        <label for="terminos">
+          Acepto los términos y condiciones.
+        </label>
+
+      </div>
+
+
+      @if (
+        formulario.get('terminos')?.invalid &&
+        formulario.get('terminos')?.touched
+      ) {
+
+        <small>
+          Debes aceptar los términos y condiciones.
+        </small>
+
+      }
+
+
+      <button type="submit">
+        Suscribirme
+      </button>
+
+
+      @if (enviado) {
+
+        <div class="mensaje-exito">
+
+          ✓ Suscripción realizada correctamente.
+
+        </div>
+
+      }
+
+    </form>
+
+  </div>
+
+</section>
