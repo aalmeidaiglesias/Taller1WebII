@@ -1,5 +1,9 @@
 <section class="catalogo">
 
+  <!-- ==============================
+       ENCABEZADO
+  ============================== -->
+
   <div class="catalogo-header">
 
     <p class="etiqueta">
@@ -12,11 +16,216 @@
     </h1>
 
     <p class="descripcion">
-      Busca personajes, consulta sus habilidades y
-      descubre información de tus superhéroes favoritos.
+      Busca personajes, consulta sus habilidades
+      y descubre información de tus superhéroes favoritos.
     </p>
 
   </div>
+
+
+  <!-- ==============================
+       FORMULARIO CRUD
+  ============================== -->
+
+  <div class="crud-panel">
+
+    <div class="crud-titulo">
+
+      <div>
+        <span class="crud-icono">⚡</span>
+
+        <div>
+          <h2>
+            {{ modoEdicion
+            ? 'Editar superhéroe'
+            : 'Agregar superhéroe'
+            }}
+          </h2>
+
+          <p>
+            {{ modoEdicion
+            ? 'Actualiza la información del personaje'
+            : 'Registra un nuevo personaje en el catálogo'
+            }}
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- AGREGAR -->
+
+    @if (!modoEdicion) {
+
+    <div class="form-grid">
+
+      <div class="campo">
+
+        <label>
+          Nombre
+        </label>
+
+        <input type="text" [(ngModel)]="nuevoHeroe.name" placeholder="Ej. Superman">
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Nombre completo
+        </label>
+
+        <input type="text" [(ngModel)]="nuevoHeroe.biography.fullName" placeholder="Nombre completo">
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Editorial
+        </label>
+
+        <input type="text" [(ngModel)]="nuevoHeroe.biography.publisher" placeholder="Ej. DC Comics">
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Raza
+        </label>
+
+        <input type="text" [(ngModel)]="nuevoHeroe.appearance.race" placeholder="Ej. Kryptonian">
+
+      </div>
+
+
+      <div class="campo campo-grande">
+
+        <label>
+          Ocupación
+        </label>
+
+        <input type="text" [(ngModel)]="nuevoHeroe.work.occupation" placeholder="Ej. Superhero">
+
+      </div>
+
+
+      <div class="campo campo-grande">
+
+        <label>
+          URL de imagen
+        </label>
+
+        <input type="text" [(ngModel)]="nuevoHeroe.images.lg" placeholder="https://...">
+
+      </div>
+
+    </div>
+
+
+    <div class="crud-botones">
+
+      <button class="btn-agregar" (click)="agregarHeroe()">
+        ➕ Agregar
+      </button>
+
+      <button class="btn-cancelar" (click)="limpiarFormulario()">
+        Limpiar
+      </button>
+
+    </div>
+
+    }
+
+
+
+
+    @if (modoEdicion && heroeEditando) {
+
+    <div class="form-grid">
+
+      <div class="campo">
+
+        <label>
+          Nombre
+        </label>
+
+        <input type="text" [(ngModel)]="heroeEditando.name">
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Nombre completo
+        </label>
+
+        <input type="text" [(ngModel)]="heroeEditando.biography.fullName">
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Editorial
+        </label>
+
+        <input type="text" [(ngModel)]="heroeEditando.biography.publisher">
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Raza
+        </label>
+
+        <input type="text" [(ngModel)]="heroeEditando.appearance.race">
+
+      </div>
+
+
+      <div class="campo campo-grande">
+
+        <label>
+          Ocupación
+        </label>
+
+        <input type="text" [(ngModel)]="heroeEditando.work.occupation">
+
+      </div>
+
+    </div>
+
+
+    <div class="crud-botones">
+
+      <button class="btn-actualizar" (click)="actualizarHeroe()">
+        ✏️ Actualizar
+      </button>
+
+      <button class="btn-cancelar" (click)="cancelarEdicion()">
+        Cancelar
+      </button>
+
+    </div>
+
+    }
+
+  </div>
+
+
+  <!-- ==============================
+       CARGANDO
+  ============================== -->
 
   @if (cargando) {
 
@@ -29,12 +238,16 @@
     </h2>
 
     <p>
-      Estamos cargando los superhéroes y sus imágenes espere porfavor.......
+      Estamos cargando los superhéroes
+      y sus imágenes...
     </p>
 
   </div>
 
   }
+
+
+
 
   @else if (error) {
 
@@ -55,6 +268,7 @@
   </div>
 
   }
+
 
   @else {
 
@@ -97,12 +311,11 @@
 
 
     <button class="btn-limpiar" (click)="limpiarFiltros()">
-
       Limpiar
-
     </button>
 
   </div>
+
 
   <div class="resultado-info">
 
@@ -120,6 +333,7 @@
 
   </div>
 
+
   @if (superheroesFiltrados.length > 0) {
 
   <div class="grid">
@@ -133,7 +347,7 @@
 
       <div class="imagen-container">
 
-        <img [src]="heroe.images.lg" [alt]="heroe.name">
+        <img [src]="heroe.images?.lg" [alt]="heroe.name">
 
         <span class="publisher">
 
@@ -145,6 +359,7 @@
         </span>
 
       </div>
+
 
       <div class="card-content">
 
@@ -161,24 +376,32 @@
           }}
 
         </p>
+
+
         <div class="datos">
+
           <div class="dato">
+
             <span>
               Raza
             </span>
+
             <strong>
               {{
               heroe.appearance?.race ||
               'Desconocida'
               }}
             </strong>
+
           </div>
 
 
           <div class="dato">
+
             <span>
               Ocupación
             </span>
+
             <strong>
               {{
               heroe.work?.occupation ||
@@ -206,7 +429,11 @@
 
         </div>
 
+
+
+
         <div class="estadisticas">
+
           <h3>
             Estadísticas
           </h3>
@@ -231,6 +458,7 @@
 
             </div>
 
+
             <div class="estadistica">
 
               <span>
@@ -248,6 +476,7 @@
               </small>
 
             </div>
+
 
             <div class="estadistica">
 
@@ -267,6 +496,7 @@
 
             </div>
 
+
             <div class="estadistica">
 
               <span>
@@ -285,8 +515,21 @@
 
             </div>
 
-
           </div>
+
+        </div>
+
+
+
+        <div class="acciones">
+
+          <button class="btn-editar" (click)="editarHeroe(heroe)">
+            ✏️ Editar
+          </button>
+
+          <button class="btn-eliminar" (click)="eliminarHeroe(heroe)">
+            🗑️ Eliminar
+          </button>
 
         </div>
 
@@ -299,6 +542,7 @@
   </div>
 
   }
+
 
   @else {
 
@@ -313,14 +557,12 @@
     </h2>
 
     <p>
-      Intenta buscar con otro nombre o cambia
-      el filtro de editorial.
+      Intenta buscar con otro nombre
+      o cambia el filtro de editorial.
     </p>
 
     <button class="btn-limpiar" (click)="limpiarFiltros()">
-
       Ver todos
-
     </button>
 
   </div>
